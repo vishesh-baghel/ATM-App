@@ -65,11 +65,58 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-const movements = [233, 4, 5, 343, -234];
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((accu, mov) => accu + mov, 0);
+  labelBalance.textContent = `₹${balance}`;
+};
 
-const euroToUsd = 1.1;
-const movementsUsd = movements.map(function (mov) {
-  return mov + euroToUsd;
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `₹${incomes}`;
+
+  const out = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `₹${Math.abs(out)}`;
+
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * 1.2) % 100)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `₹${interest}`;
+};
+
+console.log(calcDisplaySummary(account1.movements));
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
+};
+const movements = [2, 3, 4, 5, -11, 34];
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
 });
 
-console.log(movements);
+const withdrawals = movements.filter((mov) => mov < 0);
+
+const balance = movements.reduce((accumulate, cur) => accumulate + cur);
+
+let currentAccount;
+btnLogin.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    (acc) => acc.userName === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+});
