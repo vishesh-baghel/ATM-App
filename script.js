@@ -14,7 +14,7 @@ const account1 = {
 const account2 = {
   owner: "kunal srivastav",
   movements: [5000, 2300, -5999, -234, 60000],
-  interestRate: 1.5,
+  interestRate: 2.5,
   pin: 2222,
 };
 
@@ -63,34 +63,28 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((accu, mov) => accu + mov, 0);
   labelBalance.textContent = `₹${balance}`;
 };
 
-calcDisplayBalance(account1.movements);
-
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `₹${incomes}`;
 
-  const out = movements
+  const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `₹${Math.abs(out)}`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter((mov) => mov > 0)
-    .map((deposit) => (deposit * 1.2) % 100)
+    .map((deposit) => (deposit * acc.interestRate) % 100)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `₹${interest}`;
 };
-
-console.log(calcDisplaySummary(account1.movements));
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -101,7 +95,14 @@ const createUsernames = function (accs) {
       .join("");
   });
 };
-const movements = [2, 3, 4, 5, -11, 34];
+
+const updateUI = function (acc) {
+  displayMovements(acc.movements);
+
+  calcDisplayBalance(acc);
+
+  calcDisplaySummary(acc);
+};
 
 const deposits = movements.filter(function (mov) {
   return mov > 0;
@@ -119,4 +120,53 @@ btnLogin.addEventListener("click", function (e) {
     (acc) => acc.userName === inputLoginUsername.value
   );
   console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(" ")[0]
+    }`;
+    containerApp.getElementsByClassName.opacity = 100;
+
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
+    updateUI(currentAccount);
+  }
+});
+
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recieverAcc = accounts.find(
+    (acc) => acc.userName === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = "";
+
+  if (
+    amount > 0 &&
+    currentAccount.balance >= amount &&
+    recieverAcc?.userName !== currentAccount.userName
+  ) {
+    currentAccount.movements.push(-amount);
+    recieverAcc.movements.push(amount);
+
+    updateUI(currentAccount);
+  }
+});
+
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.userName === currentAccount.userName
+    );
+    const index = accounts.findIndex(
+      (acc) => acc.userName === currentAccount.userName
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 100;
+  }
 });
