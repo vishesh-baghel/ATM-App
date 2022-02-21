@@ -1,3 +1,4 @@
+const movements = [2, 399, 4, 100, 5, 22, -234, -43];
 const checkDogs = function (dogsJulia, dogsKate) {
   const dogsJuliaCorrected = dogsJulia.slice();
   dogsJuliaCorrected.splice(0, 1);
@@ -34,11 +35,26 @@ const totalDeposits = movements
 console.log(totalDeposits);
 console.clear();
 
-// const movements = [2, 399, 4, 100, 5, 22, -234, -43];
-
 const firstWithdrawal = movements.find((mov) => mov < 0);
 console.log(movements);
 console.log(firstWithdrawal);
 
-const account = accounts.find((acc) => acc.owner === "vishesh baghel");
-console.log(account);
+// const account = accounts.find((acc) => acc.owner === "vishesh baghel");
+// console.log(account);
+
+const anyDeposits = movements.some((mov) => mov > 1000);
+console.log(anyDeposits);
+
+console.log(movements.every((mov) => mov > 0));
+
+const arr = [
+  [[2, 3], 1, 23, 4],
+  [3, 4, 5],
+];
+console.log(arr.flat(2));
+
+// const accountMovements = accounts.map((acc) => acc.movements);
+// console.log(accountMovements);
+
+movements.sort((a, b) => a - b);
+console.log(movements);
