@@ -58,3 +58,72 @@ console.log(arr.flat(2));
 
 movements.sort((a, b) => a - b);
 console.log(movements);
+
+console.log([1, 2, 3, 4]);
+const x = new Array(7);
+x.fill(1, 3, 5);
+console.log(x);
+
+arr.fill(23, 4, 6);
+console.log(arr);
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+// const diceRolls = Array.from({ length: 10 }, Math.floor(Math.random() * 6) + 1);
+// console.log(diceRolls);
+
+// program to check if the string is palindrome or not
+console.clear();
+const str = "alla";
+function checkPalindrome(str) {
+  // find the length of a string
+  const len = str.length;
+
+  // loop through half of the string
+  for (let i = 0; i < len / 2; i++) {
+    // check if first and last string are same
+    if (str[i] !== str[len - 1 - i]) {
+      return "It is not a palindrome";
+    }
+  }
+  return "It is a palindrome";
+}
+// const num = 5;
+// function factorial(num) {
+//   return num * factorial(num - 1);
+// }
+// console.log(factorial(5));
+// console.log(checkPalindrome(str));
+
+console.log(0.1 + 0.2);
+console.log(Number.parseInt("20px   "));
+console.log(Number.parseFloat("   2.3rem"));
+
+console.log(Number.isNaN(20));
+console.log(Number.isNaN("20"));
+console.log(Number.isNaN(+"20x"));
+console.log(Number.isNaN(20 / 0));
+
+console.log(Number.isFinite(20));
+console.log(Number.isFinite("20"));
+
+console.log(Math.sqrt(25));
+console.log(8 ** (1 / 3));
+
+console.log(Math.max(2, 4, 5, 6));
+console.log(Math.min(2, 4, "3", 5, 6));
+
+console.log(Math.PI * Number.parseFloat("10px") ** 2);
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+const randomInt = (min, max) =>
+  Math.trunc(Math.random() * (max - min) + 1) + min;
+
+console.log(randomInt(10, 20));
+
+console.log(Math.ceil(23.1));
+console.log(Math.round(23.1));
+console.log(Math.floor("23.9"));
