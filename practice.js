@@ -127,3 +127,77 @@ console.log(randomInt(10, 20));
 console.log(Math.ceil(23.1));
 console.log(Math.round(23.1));
 console.log(Math.floor("23.9"));
+
+console.log((2.4).toFixed(0));
+console.log(+(2.334).toFixed(3));
+console.log(5 % 2);
+
+const isEven = (n) => n % 2 === 0;
+console.log(isEven(4));
+
+const diameter = 287_000_000_00000;
+console.log(diameter);
+console.log(Number("230_000"));
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(24525463423523553523345345345352n);
+console.log(BigInt(24525463423523553523345345345352));
+console.log(1000n + 1000n);
+console.log(42823794728492894832n * 234342432n);
+const huge = 234234243342n;
+const num = 23;
+console.log(huge * BigInt(num));
+console.log(20n === 20);
+
+console.log(huge + " is reall big ");
+console.log(11n / 2n);
+
+const now = new Date();
+console.log(now);
+
+const account3 = {
+  owner: "Jonas Schmedtmann",
+  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+
+  movementsDates: [
+    "2019-11-18T21:31:17.178Z",
+    "2019-12-23T07:42:02.383Z",
+    "2020-01-28T09:15:04.904Z",
+    "2020-04-01T10:17:24.185Z",
+    "2020-05-08T14:11:59.604Z",
+    "2020-05-27T17:01:17.194Z",
+    "2020-07-11T23:36:17.929Z",
+    "2020-07-12T10:51:36.790Z",
+  ],
+  currency: "EUR",
+  locale: "pt-PT", // de-DE
+};
+console.clear();
+console.log(new Date(account3.movementsDates[0]));
+const future = new Date(2022, 10, 18, 23, 4, 5);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDay());
+console.log(future.getTime());
+console.log(Date.now());
+
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+const days1 = calcDaysPassed(
+  new Date(2022, 10, 18, 23, 4, 5),
+  new Date(2028, 10, 18, 23, 4, 5)
+);
+console.log(days1);
+
+const options = {
+  style: "unit",
+  unit: "mile-per-hour",
+  currency: "EUR",
+};
+const numm = 2343.234;
+console.log("US:", new Intl.NumberFormat("en-US.").format(numm));
+console.log("US:", new Intl.NumberFormat("en-Germany.").format(numm));
+console.log("US:", new Intl.NumberFormat("en-Syria.").format(numm));
