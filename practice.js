@@ -201,3 +201,9 @@ const numm = 2343.234;
 console.log("US:", new Intl.NumberFormat("en-US.").format(numm));
 console.log("US:", new Intl.NumberFormat("en-Germany.").format(numm));
 console.log("US:", new Intl.NumberFormat("en-Syria.").format(numm));
+
+console.log("dsf");
+console.log("dsf");
+console.log("dsf");
+
+setTimeout(() => console.log("here is your pizza"));

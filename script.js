@@ -103,7 +103,12 @@ const formatMovementDate = function (date) {
   return `${day}/${month}/${year}`;
 };
 
-const formatCur = function()
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+  }).format(value);
+};
 
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = "";
@@ -113,10 +118,7 @@ const displayMovements = function (movements, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date);
 
-    const formattedMov = new Intl.NumberFormat(acc.locale, {
-      style: "currency",
-      currency: acc.currency,
-    }).format(mov);
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -130,7 +132,8 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((accu, mov) => accu + mov, 0);
-  labelBalance.textContent = `₹${balance}`;
+
+  labelBalance.textContent = formatCur(mov, acc.locale, acc.currency);
 };
 
 const calcDisplaySummary = function (acc) {
@@ -176,6 +179,14 @@ const deposits = movements.filter(function (mov) {
 const withdrawals = movements.filter((mov) => mov < 0);
 
 const balance = movements.reduce((accumulate, cur) => accumulate + cur);
+
+const startLogOutTimer = function () {
+  let time = 100;
+  setInterval(function () {
+    labelTimer.textContent = time;
+    time--;
+  }, 1000);
+};
 
 let currentAccount;
 
@@ -226,9 +237,12 @@ btnLoan.addEventListener("click", function (e) {
     amount > 0 &&
     currentAccount.movements.some((mov) => mov >= amount * 0.1)
   ) {
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
-    updateUI(currentAccount);
+    setTimeout(function () {
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
+      startLogOutTimer();
+      updateUI(currentAccount);
+    }, 2500);
   }
 });
 
