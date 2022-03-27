@@ -19,3 +19,5 @@
 // IN JS we have lexical scoping so the rules of where we can access variables are based on exactly where in the code functions and blocks are written
 
 // a scope will never, ever have access to the variables of an inner scope
+
+// This is just for the commits
