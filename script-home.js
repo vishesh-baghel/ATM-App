@@ -22,27 +22,70 @@
 
 // This is just for the commits
 
-function calcAge(birthYear) {
-  const age = 2037 - birthYear;
+// function calcAge(birthYear) {
+//   const age = 2037 - birthYear;
 
-  function printAge() {
-    const output = `${firstName}You are ${age}, born in ${birthYear}`;
-    alert(output);
+//   function printAge() {
+//     const output = `${firstName}You are ${age}, born in ${birthYear}`;
+//     alert(output);
 
-    if (birthYear >= 1981 && birthYear <= 1996) {
-      const str = `Oh, and you're a millenial, ${firstName}`;
-      var millenial = true;
-      console.log(str);
+//     if (birthYear >= 1981 && birthYear <= 1996) {
+//       const str = `Oh, and you're a millenial, ${firstName}`;
+//       var millenial = true;
+//       console.log(str);
 
-      function add(a, b) {
-        return a + b;
-      }
-    }
-    console.log(millenial);
-    add(2, 3);
-  }
-  return age;
-}
+//       function add(a, b) {
+//         return a + b;
+//       }
+//     }
+//     console.log(millenial);
+//     add(2, 3);
+//   }
+//   return age;
+// }
 
-const firstName = "vishesh";
-calcAge(1999);
+// const firstName = "vishesh";
+// calcAge(1999);
+
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+const allSections = document.querySelectorAll(".section");
+console.log(allSections);
+
+document.getElementById("section--1");
+const allbuttons = document.getElementsByTagName("button");
+
+console.log(allbuttons);
+
+document.getElementsByClassName("btn");
+
+//creating and inserting elements
+
+const message = document.createElement("div");
+
+message.classList.add("cookie-message");
+
+message.textContent =
+  'WE use cookies for improved functionality and analytics <button class = "btn btn--close-cookie">Got it! </button> ';
+
+Headers.prepend(message);
+
+Headers.append(message);
+
+document
+  .querySelector(".btn--close-cookie")
+  .addEventListener("click", function () {
+    message.remove();
+  });
+
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
+
+document.documentElement.style.setProperty("--color-primary", "orangered");
