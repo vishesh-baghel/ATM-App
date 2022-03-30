@@ -47,45 +47,79 @@
 // const firstName = "vishesh";
 // calcAge(1999);
 
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
 
-const allSections = document.querySelectorAll(".section");
-console.log(allSections);
+// const allSections = document.querySelectorAll(".section");
+// console.log(allSections);
 
-document.getElementById("section--1");
-const allbuttons = document.getElementsByTagName("button");
+// document.getElementById("section--1");
+// const allbuttons = document.getElementsByTagName("button");
 
-console.log(allbuttons);
+// console.log(allbuttons);
 
-document.getElementsByClassName("btn");
+// document.getElementsByClassName("btn");
 
-//creating and inserting elements
+// //creating and inserting elements
 
-const message = document.createElement("div");
+// const message = document.createElement("div");
 
-message.classList.add("cookie-message");
+// message.classList.add("cookie-message");
 
-message.textContent =
-  'WE use cookies for improved functionality and analytics <button class = "btn btn--close-cookie">Got it! </button> ';
+// message.textContent =
+//   'WE use cookies for improved functionality and analytics <button class = "btn btn--close-cookie">Got it! </button> ';
 
-Headers.prepend(message);
+// Headers.prepend(message);
 
-Headers.append(message);
+// Headers.append(message);
 
-document
-  .querySelector(".btn--close-cookie")
-  .addEventListener("click", function () {
-    message.remove();
-  });
+// document
+//   .querySelector(".btn--close-cookie")
+//   .addEventListener("click", function () {
+//     message.remove();
+//   });
 
-message.style.backgroundColor = "#37383d";
-message.style.width = "120%";
+// message.style.backgroundColor = "#37383d";
+// message.style.width = "120%";
 
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).height);
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
 
-document.documentElement.style.setProperty("--color-primary", "orangered");
+// document.documentElement.style.setProperty("--color-primary", "orangered");
+
+// const logo = document.querySelector(".nav__logo");
+// console.log(logo.src);
+
+// logo.alt = 'beautiful minimalist logo';
+// logo.setAttribute('company', 'Bankist');
+
+// const link = document.querySelector('.twitter-link');
+
+// logo.classList.add('c');
+// logo.className.remove('c');
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect();
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+const h1 = document.querySelector("h1");
+
+const alertH1 = function (e) {
+  alert("Great! you are reading the heading");
+
+  h1.removeEventListener('mouseenter', alertH1);
+});
