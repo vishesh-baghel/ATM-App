@@ -123,3 +123,30 @@ const alertH1 = function (e) {
 
   h1.removeEventListener('mouseenter', alertH1);
 });
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+
+// BUBBLING AND CAPTURING
+
+// 1- capturing phase- whenever we click on any Element, then this phase is started at the root of the Document. 
+
+// document--> Element<html> --> Element<body> --> element<section> --> element <p> --> element <a>, here target phase starts 
+
+// then the bubbling phase starts, in which the event simply bubbles up to the top and reach the root of the document
+
+// const randomInt = (min, max) => Math.floor(Math.random()* (max - min + 1) + min);
+
+// const randomColor = () => `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+// document.querySelector('.nav__link').addEventListener('click', function(e) {
+//   this.style.backgroundColor = randomColor();
+// })
+
+document.querySelectorAll('.nav__link').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const id = this.getAttribute('href');
+    document.querySelector(id);
+  })
+})
