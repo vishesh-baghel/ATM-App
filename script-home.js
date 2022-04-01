@@ -147,6 +147,8 @@ document.querySelectorAll('.nav__link').forEach(function(el) {
     e.preventDefault();
 
     const id = this.getAttribute('href');
-    document.querySelector(id);
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth'
+    });
   })
 })
