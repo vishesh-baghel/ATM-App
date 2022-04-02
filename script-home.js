@@ -152,3 +152,55 @@ document.querySelectorAll('.nav__link').forEach(function(el) {
     });
   })
 })
+
+document.querySelector('.nav__links').addEventListener('click', function(e) {
+
+  if(e.target.classlist.contains)
+})
+
+// DOM traversing 
+
+const h1 = document.querySelector('h1');
+
+console.log(h1.querySelectorAll('.highlight'));
+
+console.log(h1.childNodes);
+console.log(h1.children);
+
+h1.firstElementChild.getElementsByClassName.color = 'white';
+
+h1.lastElementChild.getElementsByClassName.color = 'orangered';
+
+console.log(h1.parentNode);
+
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+
+console.log(h1.previousElementSibling);
+
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+
+
+// Tabbed componnnt
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainer = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+
+tabContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classlist.add('operations__tab--active');
+
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classlist.add('operations__content--active');
+})
