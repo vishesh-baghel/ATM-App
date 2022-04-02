@@ -204,3 +204,21 @@ tabContainer.addEventListener('click', function (e) {
 
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classlist.add('operations__content--active');
 })
+
+navigator.addEventListener('mouseover', function(e) {
+  if(e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelector('.nav__link');
+    const logo = link.closest('.nav').querySelector('.nav__link');
+
+    siblings.forEach(el => {
+      if (el != link) el.style.opacity = .5;
+    });
+    logo.style.opacity = 1;
+  }
+})
+
+
+navigator.addEventListener('mouseout', function(e) {
+  
+})
