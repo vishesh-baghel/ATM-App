@@ -222,3 +222,26 @@ navigator.addEventListener('mouseover', function(e) {
 navigator.addEventListener('mouseout', function(e) {
   
 })
+
+// Menu fade animation
+
+const handleHover = function(e, opacity) {
+
+};
+
+navigator.addEventListener('mouseover', function(e) {
+  handleHover(e, 0.5);
+});
+
+// Sticky navigation feature
+
+const initialCoords = section1.getBoundingClientRect();
+
+window.addEventListener('scroll', function(e) {
+  if (this.window.scrollY > initialCoords.top) {
+    nav.classList.add('sticky');
+  }
+});
+
+const observer = new IntersectionObserver();
+observer.observe(section1);
