@@ -243,5 +243,35 @@ window.addEventListener('scroll', function(e) {
   }
 });
 
-const observer = new IntersectionObserver();
+const obsCallback = function(entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  })
+}
+
+const obsOptions = {
+  root: null, 
+  threshold: 0.1,
+}
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
 observer.observe(section1);
+
+const header = document.querySelector('.header');
+
+const navHieght = nav.getBoundingClientRect().height;
+
+const stickyNav = function(entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: "-90px",
+});
+
+headerObserver.observe(header);
