@@ -365,6 +365,7 @@ const prevSlide = function() {
   }
   curSlide--;
   goToSlide(curSlide);
+  activateDot();
 }
 
 btnRight.addEventListener('click', nextSlide);
@@ -377,4 +378,31 @@ document.addEventListener('keydown', function(e) {
 
 dotContainer.addEventListener('click', function(e) {
   if (e.target.classList.contains('dots__dot'))
+});
+
+const activateDot = function(slide) {
+  document.querySelectorAll('.dots__dot').forEach(dot => dot.classList.remove('.dots__dot--active'));
+
+  document.querySelector(`.dots__dot[data-slide = "${slide}"]`).classList.add('dots__dot--active')
+}
+
+// advanced DOM events
+
+document.addEventListener('DOMContentLoaded', function(e) {
+
 })
+
+window.addEventListener('load', function(e) {
+  console.log('Page fully loaded');
+});
+
+window.addEventListener('beforeunload', function(e) {
+  e.preventDefault();
+})
+
+// defer and async
+
+// why do we write script tag at the end of the body ? 
+// because, if we add the tag at the head, then it HTML parsing would be stopped as soon as the script is encountered. Until the fetch script and script execution is finished the html parsing would be paused, which we cause the page to load slower. 
+
+
