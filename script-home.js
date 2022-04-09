@@ -405,4 +405,12 @@ window.addEventListener('beforeunload', function(e) {
 // why do we write script tag at the end of the body ? 
 // because, if we add the tag at the head, then it HTML parsing would be stopped as soon as the script is encountered. Until the fetch script and script execution is finished the html parsing would be paused, which we cause the page to load slower. 
 
+// Async in head:
+// Scripts are fetched aynchronously and executed immediately 
 
+// 2- scripts not guaranteed to execute in order 
+
+// Defer in head:
+// Scripts are fetched asynchronously and executed after the html is completely parsed 
+// 2- DOMcontentloaded event fires after defer script is executed
+// 3- scripts are guaranteed to execute in order
